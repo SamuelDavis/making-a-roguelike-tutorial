@@ -2,8 +2,6 @@ function DRAW_GAME()
     cls()
     map()
 
-    palt(BLACK, false)
-    pal(LIGHT_GRAY, YELLOW)
-    spr(SPRITE_PLAYER, P_X * 8, P_Y * 8)
-    pal()
+    DRAW_SPRITE(GET_FRAME(P_ANI), P_X * TILE_SIZE + P_OX,
+                P_Y * TILE_SIZE + P_OY, YELLOW)
 end
