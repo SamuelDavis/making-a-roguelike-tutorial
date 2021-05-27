@@ -17,6 +17,9 @@ FLOOR, WALL, TABLET, JAR_SMALL, JAR_LARGE, BOX_SMALL_OPEN, BOX_SMALL_CLOSE, BOX_
 -- flags
 IMPASSIBLE, INTERACTIVE = 0, 1
 
+-- sound effects
+SFX_JAR, SFX_BOX, SFX_DOOR, SFX_MOVE = 59, 61, 62, 63
+
 -- display
 TILE_SIZE = 8
 SCREEN_SIZE = 128
@@ -26,6 +29,7 @@ SPRITE_PLAYER = 240
 ANI_SPD = 8
 
 -- variables
+WINDOWS = {}
 INPUT_BUFFER = nil
 T = 0
 _UPD, _DRW = NOOP, NOOP
@@ -50,4 +54,7 @@ function _update60()
     _UPD()
 end
 
-function _draw() _DRW() end
+function _draw()
+    _DRW()
+    DRAW_WINDOWS()
+end
