@@ -2,6 +2,7 @@ LEFT, RIGHT, UP, DOWN, FIRE1, FIRE2 = 0, 1, 2, 3, 4, 5
 BLACK, DARK_BLUE, DARK_PURPLE, DARK_GREEN, BROWN, DARK_GRAY, LIGHT_GRAY, WHITE, RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PINK, PEACH =
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
+IMPASSIBLE = 0
 DIRECTIONS = {
     [LEFT] = {-1, 0},
     [RIGHT] = {1, 0},
@@ -28,6 +29,8 @@ function _init()
     P_ANI = {
         SPRITE_PLAYER, SPRITE_PLAYER + 1, SPRITE_PLAYER + 2, SPRITE_PLAYER + 3
     }
+    P_FLIP = false
+    P_MOV = NOOP
 end
 
 function _update60()
