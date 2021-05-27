@@ -8,3 +8,8 @@ function DRAW_SPRITE(sprite, x, y, tint, flip)
     spr(sprite, x, y, 1, 1, flip)
     pal()
 end
+
+function GET_INPUT()
+    for i = LEFT, FIRE2 do if btnp(i) then return i end end
+    return nil
+end

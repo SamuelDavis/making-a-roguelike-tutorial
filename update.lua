@@ -1,11 +1,4 @@
-function UPDATE_GAME()
-    for button, direction in pairs(DIRECTIONS) do
-        if btnp(button) then
-            local dx, dy = unpack(direction)
-            MOVE_PLAYER(dx, dy)
-        end
-    end
-end
+function UPDATE_GAME() PROCESS_INPUT(INPUT_BUFFER) end
 
 function UPDATE_PTURN()
     P_T = min(P_T + P_DT, 1)
