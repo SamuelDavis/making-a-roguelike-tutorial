@@ -1,29 +1,19 @@
 function UPDATE_GAME()
-    if btnp(LEFT) then
-        P_X, P_OX = P_X - 1, TILE_SIZE
-        _UPD = UPDATE_PTURN
-    elseif btnp(RIGHT) then
-        P_X, P_OX = P_X + 1, -TILE_SIZE
-        _UPD = UPDATE_PTURN
-    elseif btnp(UP) then
-        P_Y, P_OY = P_Y - 1, TILE_SIZE
-        _UPD = UPDATE_PTURN
-    elseif btnp(DOWN) then
-        P_Y, P_OY = P_Y + 1, -TILE_SIZE
-        _UPD = UPDATE_PTURN
+    for button, direction in pairs(DIRECTIONS) do
+        if btnp(button) then
+            dx, dy = unpack(direction)
+            P_X, P_Y = P_X + dx, P_Y + dy
+            P_SOX, P_SOY = dx * -TILE_SIZE, dy * -TILE_SIZE
+            P_OX, P_OY = P_SOX, P_SOY
+            P_T = 0
+            _UPD = UPDATE_PTURN
+        end
     end
 end
 
 function UPDATE_PTURN()
-    if P_OX > 0 then
-        P_OX = P_OX - 1
-    elseif P_OX < 0 then
-        P_OX = P_OX + 1
-    elseif P_OY > 0 then
-        P_OY = P_OY - 1
-    elseif P_OY < 0 then
-        P_OY = P_OY + 1
-    else
-        _UPD = UPDATE_GAME
-    end
+    P_T = min(P_T + P_DT, 1)
+    P_OX = P_SOX * (1 - P_T)
+    P_OY = P_SOY * (1 - P_T)
+    if P_T == 1 then _UPD = UPDATE_GAME end
 end
