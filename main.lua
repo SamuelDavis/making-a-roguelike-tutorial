@@ -24,6 +24,9 @@ IMPASSIBLE, INTERACTIVE = 0, 1
 -- sound effects
 SFX_JAR, SFX_BOX, SFX_DOOR, SFX_MOVE = 59, 61, 62, 63
 
+-- mob types
+SLIME = 0
+
 -- display
 TILE_SIZE = 8
 SCREEN_SIZE = 128
@@ -34,6 +37,7 @@ ANI_SPD = 8 / 60
 WINDOW_COLLAPSE_SPD, WINDOW_PADDING_X, WINDOW_PADDING_Y = 8, 4, 5
 
 -- variables
+MOBS = {}
 WINDOWS = {}
 INPUT_BUFFER = nil
 _UPD, _DRW = NOOP, NOOP
@@ -50,6 +54,8 @@ function _init()
     }
     P_FLIP = false
     P_MOV = NOOP
+
+    ADD_MOB(SLIME, 2, 2)
 end
 
 function _update60()
