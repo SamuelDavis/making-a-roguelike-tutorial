@@ -23,11 +23,11 @@ end
 function TRIGGER_BUMP(tile, tx, ty)
     if tile == TABLET then
         sfx(SFX_JAR)
-        mset(tx, ty, FLOOR)
-        ADD_WINDOW(tx, ty, 32, 32, {"you got", "a tablet"})
+        PROMPT({"foo", "bar", "qux", "thud", "grunt"})
     elseif tile == JAR_LARGE or tile == JAR_SMALL then
         sfx(SFX_JAR)
         mset(tx, ty, FLOOR)
+        ALERT("disrespect your surroundings!")
     elseif tile == BOX_LARGE_CLOSE then
         sfx(SFX_BOX)
         mset(tx, ty, BOX_LARGE_OPEN)

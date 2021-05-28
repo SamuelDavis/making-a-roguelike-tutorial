@@ -4,7 +4,11 @@ DIRECTIONS = {
     [LEFT] = {-1, 0},
     [RIGHT] = {1, 0},
     [UP] = {0, -1},
-    [DOWN] = {0, 1}
+    [DOWN] = {0, 1},
+    topleft = {-1, -1},
+    bottomleft = {-1, 1},
+    topright = {1, -1},
+    bottomright = {1, 1}
 }
 -- colors
 BLACK, DARK_BLUE, DARK_PURPLE, DARK_GREEN, BROWN, DARK_GRAY, LIGHT_GRAY, WHITE, RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PINK, PEACH =
@@ -24,14 +28,14 @@ SFX_JAR, SFX_BOX, SFX_DOOR, SFX_MOVE = 59, 61, 62, 63
 TILE_SIZE = 8
 SCREEN_SIZE = 128
 SCREEN_CENTER = SCREEN_SIZE / 2
-FONT_WIDTH, FONT_HEIGHT = 4, 5
+FONT_WIDTH, FONT_HEIGHT = 4, 6
 SPRITE_PLAYER = 240
-ANI_SPD = 8
+ANI_SPD = 8 / 60
+WINDOW_COLLAPSE_SPD, WINDOW_PADDING_X, WINDOW_PADDING_Y = 8, 4, 5
 
 -- variables
 WINDOWS = {}
 INPUT_BUFFER = nil
-T = 0
 _UPD, _DRW = NOOP, NOOP
 
 function _init()
@@ -49,8 +53,11 @@ function _init()
 end
 
 function _update60()
-    T = T + 1
     INPUT_BUFFER = GET_INPUT()
+    if WINDOWS.prompt ~= nil then
+        if btnp(FIRE2) then WINDOWS.prompt.duration = 0 end
+        return
+    end
     _UPD()
 end
 
